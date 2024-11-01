@@ -11,3 +11,5 @@ cd project-folder
 yarn install
 yarn dev
 ```
+
+open project on http://localhost:5173
