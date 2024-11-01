@@ -4,7 +4,7 @@ this is a data table with mock data. it uses windowing to optimize renders of ta
 
 ## Installation:
 
-- Configure the top-level `parserOptions` property like this:
+- project uses `Vite`. to install and run just use following commands:
 
 ```shell
 cd project-folder
