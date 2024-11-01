@@ -10,5 +10,4 @@ this is a data table with mock data. it uses windowing to optimize renders of ta
 cd project-folder
 yarn install
 yarn dev
-});
 ```
