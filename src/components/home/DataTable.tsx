@@ -3,6 +3,8 @@ import { FixedSizeList as List } from "react-window";
 import { trunc } from "../../helpers/props";
 import useTable from "../../hooks/useTable";
 import clock from "../../assets/3481226.png";
+import moment from "moment-jalaali";
+moment.loadPersian();
 
 const ScheduleTable: React.FC = () => {
 	const { data, daysWithDate, daysOfWeek } = useTable();
@@ -16,15 +18,24 @@ const ScheduleTable: React.FC = () => {
 	}) => (
 		<tr style={style}>
 			<td className="time-td">{index % 3 === 0 ? data[index].time : ""}</td>
-			{daysOfWeek.map((_, i) => (
-				<td
-					key={i}
-					className={`${i + 1 === daysOfWeek.length ? "border-left-0" : ""}`}
-					title={data[index].activity}
-				>
-					{trunc(data[index].activity, 25)}
-				</td>
-			))}
+
+			{daysOfWeek.map((_, i) => {
+				console.log("HAHAHAHAHA XD", data[index].time);
+
+				let tlt = "-";
+				if (data[index]?.date === _) {
+					tlt = data[index].activity;
+				}
+				return (
+					<td
+						key={`day-${i}`}
+						className={`${i + 1 === daysOfWeek.length ? "border-left-0" : ""}`}
+						title={tlt}
+					>
+						{trunc(tlt, 25)}
+					</td>
+				);
+			})}
 		</tr>
 	);
 
@@ -39,7 +50,9 @@ const ScheduleTable: React.FC = () => {
 							</div>
 						</th>
 						{daysWithDate.map((day, index) => (
-							<th key={index}>{day}</th>
+							<th key={index}>
+								{moment(day, "YYYY-MM-DD").format("jMM/jDD dddd")}
+							</th>
 						))}
 					</tr>
 				</thead>

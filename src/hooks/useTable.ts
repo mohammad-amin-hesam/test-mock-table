@@ -1,26 +1,56 @@
 import { faker } from "@faker-js/faker";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DataItem } from "../types/Table";
+import moment from "moment-jalaali";
+
+moment.loadPersian();
+
+let daysOfWeek = [];
+
+for (let i = 0; i < 7; i++) {
+	daysOfWeek.push(
+		moment()
+			.subtract(i + 1, "d")
+			.format("YYYY-MM-DD")
+	);
+}
+
+daysOfWeek = daysOfWeek.reverse();
+
+let daysForDate = [];
+
+for (let i = 0; i < 7; i++) {
+	daysForDate.push(
+		moment()
+			.subtract(i + 1, "d")
+			.format("YYYY-MM-DD")
+	);
+}
+
+daysForDate = daysForDate.reverse();
 
 export const generateFakeData = (): DataItem[] => {
-	const data = [];
+	const data: DataItem[] = [];
+	const currentDate = new Date();
+
 	for (let i = 0; i < 5000; i++) {
-		const hour = (i * 3) % 24;
+		const date = new Date(currentDate);
+		date.setDate(currentDate.getDate() + Math.floor(i / 8));
+
+		const hour = (i % 8) * 3;
+		const time = `${hour}:00`;
 		const activity = faker.company.name();
-		data.push({ time: `${hour}:00`, activity });
+
+		data.push({
+			date: daysForDate[Math.floor(Math.random() * daysForDate.length)],
+			time,
+			activity,
+			id: faker.string.ulid(),
+		});
 	}
+
 	return data;
 };
-
-export const daysOfWeek: string[] = [
-	"شنبه",
-	"یکشنبه",
-	"دوشنبه",
-	"سه‌شنبه",
-	"چهارشنبه",
-	"پنج‌شنبه",
-	"جمعه",
-];
 
 export const getDaysWithDate = (): string[] => {
 	const today = new Date();
