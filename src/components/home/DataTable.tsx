@@ -17,11 +17,10 @@ const ScheduleTable: React.FC = () => {
 		style: React.CSSProperties;
 	}) => (
 		<tr style={style}>
-			<td className="time-td">{index % 3 === 0 ? data[index].time : ""}</td>
+			{/* <td className="time-td">{index % 3 === 0 ? data[index].time : ""}</td> */}
+			<td className="time-td">{data[index].time}</td>
 
 			{daysOfWeek.map((_, i) => {
-				console.log("HAHAHAHAHA XD", data[index].time);
-
 				let tlt = "-";
 				if (data[index]?.date === _) {
 					tlt = data[index].activity;

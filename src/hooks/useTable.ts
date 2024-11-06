@@ -29,6 +29,26 @@ for (let i = 0; i < 7; i++) {
 
 daysForDate = daysForDate.reverse();
 
+// function quickSort(arr: DataItem[]): DataItem[] {
+// 	if (arr.length <= 1) return arr;
+
+// 	const pivot = arr[arr.length - 1];
+// 	const pivotDateTime = Date.parse(`${pivot.date}T${pivot.time}:00`);
+// 	const left = [];
+// 	const right = [];
+
+// 	for (let i = 0; i < arr.length - 1; i++) {
+// 		const currentDateTime = Date.parse(`${arr[i].date}T${arr[i].time}:00`);
+// 		if (currentDateTime < pivotDateTime) {
+// 			left.push(arr[i]);
+// 		} else {
+// 			right.push(arr[i]);
+// 		}
+// 	}
+
+// 	return [...quickSort(left), pivot, ...quickSort(right)];
+// }
+
 export const generateFakeData = (): DataItem[] => {
 	const data: DataItem[] = [];
 	const currentDate = new Date();
